@@ -1,20 +1,18 @@
 pipeline {
-    agent any
-    tools {
-        maven 'local_maven' 
-    }
-    stages {
-      stage('Build') {
+        agent any 
+        tools { 
+        maven 'local_maven'
+        }
+       
+        stage("Build") {
             steps {
-                echo 'Building'
-                sh 'mvn compile'
+                 sh "mvn compile"
+            }
+        }       
+                    
+        stage("Unit test") {
+            steps {
+                sh "mvn test"
             }
         }
-         stage('Packaging') {
-            steps {
-                echo 'Creating Packages'
-                sh 'mvn package'
-            }
         }
-    }
-}
